@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio lógico</title>
+</head>
+<body>
+    <script>
+
+        let resList = [];
+        let textoRes = " ";
+
+        const getMedia = (mediaDividindo) => {
+                let soma = 0;
+                soma = mediaDividindo.reduce((valor, total) => valor + total, soma)
+
+                return soma/mediaDividindo.length;
+
+            };
+
+            const getResultado = (arr, mediaDiferenca) => {
+                let diferenca = 0;
+
+                arr.forEach(element => {
+                    let subtracao = element - mediaDiferenca
+
+                    if(subtracao > 0){
+                        diferenca = diferenca + subtracao;
+                    }
+                        
+                });
+                return diferenca
+            };
+
+        const calcular = () => {
+
+            const Npessoas = Number(prompt("Digite o número de pessoas"));
+
+
+            if(Npessoas>=1 && Npessoas<=1000){
+                let valores = [];
+
+                    for (let a = 0; a < Npessoas; a++) {
+                            const valor = Number(prompt("Digite o valor gasto: "));
+                            valores.push(valor);
+                };
+
+
+                const media = getMedia(valores);
+                let res = getResultado(valores, media);
+                
+                res = res.toLocaleString('en-IN', {style: 'currency',currency: 'USD', minimumFractionDigits: 2});
+                resList.push(res);
+                
+                    calcular();
+
+                } else{
+                    return;
+                }
+            
+        }
+        calcular();
+
+        resList.map((valor)=>{
+            textoRes += ` ${valor} `;
+        })
+
+        alert(textoRes);
+        
+    </script>
+</body>
+</html>
